@@ -9,23 +9,21 @@ const Tab = createBottomTabNavigator();
 export default function BottomNavigator() {
   return (
     <Tab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+      screenOptions={({ route }) => ({ // Destructure route from argument
+        tabBarActiveTintColor: 'tomato', // Updated color for active tab
+        tabBarInactiveTintColor: 'gray', // Updated color for inactive tab
+        tabBarIcon: ({ color, size }) => { // Icon rendering logic
           let iconName;
 
           if (route.name === 'Feed') {
-            iconName = 'ios-information-circle';
+            iconName = 'information-circle'; // Correct icon name for Feed
           } else if (route.name === 'Search') {
-            iconName = 'ios-search';
+            iconName = 'search'; // Correct icon name for Search
           }
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
       })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}
     >
       <Tab.Screen name="Feed" component={FeedScreen} />
       <Tab.Screen name="Search" component={SearchScreen} />

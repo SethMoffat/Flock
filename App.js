@@ -6,7 +6,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import LoginScreen from './screens/LoginScreen';
 import OnboardScreen from './screens/OnboardScreen';
-import BottomNavigator from './components/bottomNavigator';
+import BottomNavigator from './components/BottomNavigator'; //dont fix this, it break the app if you change it and it works fine
 const Stack = createStackNavigator();
 
 export default function App() {
