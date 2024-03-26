@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, TextInput, StyleSheet } from 'react-native';
 import axios from 'axios';
+import celebrityList from '../constants/celebrityList';
 
 const styles = StyleSheet.create({
   container: {
@@ -27,27 +28,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const imdbDisclaimer = (
-  <Text style={styles.disclaimerText}>
-    **Disclaimer:** This is a simulated example for educational purposes only.
-    Respect IMDb's terms of service and robots.txt. Consider using IMDb's official API for reliable and ethical data access.
-  </Text>
-);
 
 export default function SearchScreen() {
   const [query, setQuery] = useState('');
   const [celebData, setCelebData] = useState(null);
 
-  // Simulate data fetching (replace with IMDb API integration if available)
   useEffect(() => {
     if (query) {
       console.log('Search query:', query);
-      // Simulate data (replace with actual data parsing logic)
-      const simulatedData = {
-        name: 'Sample Celebrity Name',
-        birthDate: '1980-01-01', // Sample birth date for simulation
-      };
-      setCelebData(simulatedData);
+      // Find the first celebrity that matches the query
+      const foundCeleb = celebrityList.find(celeb => celeb.name.toLowerCase().includes(query.toLowerCase()));
+      setCelebData(foundCeleb || null);
     } else {
       setCelebData(null);
     }
@@ -67,7 +58,6 @@ export default function SearchScreen() {
           <Text style={styles.birthDate}>{celebData.birthDate}</Text>
         </View>
       )}
-      {imdbDisclaimer}
     </View>
   );
 }
