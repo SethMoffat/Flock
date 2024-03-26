@@ -1,6 +1,6 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
-const celebrityList = require('../constants/celebrityList');
+const celebrityList = require('./constants/celebrityList');
 
 async function scrapeInstagram(handle) {
   const { data } = await axios.get(`https://www.instagram.com/${handle}`);
