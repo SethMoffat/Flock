@@ -1,6 +1,7 @@
 const axios = require('axios');
 const cheerio = require('cheerio');
 const celebrityList = require('./constants/celebrityList');
+// const puppeteer = require('puppeteer');
 
 async function scrapeInstagram(handle) {
   const { data } = await axios.get(`https://www.instagram.com/${handle}`);
@@ -11,7 +12,7 @@ async function scrapeInstagram(handle) {
   const posts = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges;
 
   return posts.map(post => ({
-    url: `https://www.instagram.com/p/${post.node.shortcode}/`,
+    url: `https://inflact.com/profiles/instagram-viewer/`,
     imageUrl: post.node.display_url,
     timestamp: post.node.taken_at_timestamp
   })).sort((a, b) => b.timestamp - a.timestamp); // Sort in chronological order
