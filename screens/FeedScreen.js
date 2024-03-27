@@ -11,9 +11,7 @@ export default function FeedScreen() {
       // Get the followed celebrities from AsyncStorage
       const followedCelebrities = JSON.parse(await AsyncStorage.getItem('followedCelebrities')) || [];
       // Get the handles of the followed celebrities
-      {followedCelebrities.map((celeb, index) => (
-        <Celebrity key={index} name={celeb.name} />
-      ))}
+      const handles = followedCelebrities.map(celeb => celeb.handle);
       // Initialize an empty array for all posts
       const allPosts = [];
       // Iterate over each handle and fetch the posts
@@ -25,7 +23,7 @@ export default function FeedScreen() {
       setPosts(allPosts);
       console.log('Fetched posts:', allPosts); // Debug line
     };
-
+  
     fetchPosts();
   }, []);
 
